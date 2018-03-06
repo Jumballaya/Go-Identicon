@@ -20,7 +20,7 @@ func makeIdenticon(input string) {
 }
 
 func main() {
-  output = "./dist"
+  output = "./"
 
   app := cli.NewApp()
   app.Name = "Identicon"
@@ -30,7 +30,7 @@ func main() {
   app.Flags = []cli.Flag{
     cli.StringFlag{
       Name: "output, o",
-      Value: "dist",
+      Value: "./",
       Usage: "output destination for the identicon images",
       Destination: &output,
     },
