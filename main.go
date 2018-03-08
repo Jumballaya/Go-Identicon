@@ -6,7 +6,7 @@ import (
   "io/ioutil"
   "os"
   "log"
-  "identicon/icon"
+  "github.com/Jumballaya/identicon/icon"
   "github.com/urfave/cli"
 )
 
