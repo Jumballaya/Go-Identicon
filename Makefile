@@ -4,16 +4,17 @@
 
 BINARY = icon
 BINARY_PATH = bin
+TEST_ICON = Identicon
 
 # Build the project
 all: clean build
 
 build:
-	go build ${LDFLAGS} -o ${BINARY_PATH}/${BINARY} . ; \
+	go build ${LDFLAGS} -o ${BINARY_PATH}/${BINARY}
 
 test:
 	mkdir dist
-	bin/icon -o dist Identicon
+	bin/icon -o dist ${TEST_ICON}
 
 clean:
 	-rm -f ${BINARY_PATH}/${BINARY}
@@ -22,4 +23,4 @@ clean:
 install:
 	go install
 
-.PHONY: clean build
+.PHONY: build test clean install
