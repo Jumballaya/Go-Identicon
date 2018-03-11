@@ -56,3 +56,17 @@ func InstallDeps() error {
 	cmd := exec.Command("dep", "ensure")
 	return cmd.Run()
 }
+
+// Run test that creates an identicon named Identicon
+func Test() error {
+	mg.Deps(Build)
+	fmt.Println("Running test...")
+
+	err := os.Mkdir("dist", os.FileMode(0777))
+	if err != nil {
+		return err
+	}
+
+	cmd := exec.Command("./bin/icon", "-o", "dist", "Identicon")
+	return cmd.Run()
+}
