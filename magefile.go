@@ -46,7 +46,8 @@ func Build() error {
 func Install() error {
 	mg.Deps(Build)
 	fmt.Println("Installing...")
-	return os.Rename("./bin/icon", "$GOPATH/bin/identicon")
+	gopath := os.Getenv("GOPATH")
+	return os.Rename("./bin/icon", gopath+"/bin/identicon")
 }
 
 // Manage your deps, or running package managers.
