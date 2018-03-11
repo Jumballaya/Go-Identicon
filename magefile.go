@@ -14,11 +14,31 @@ import (
 // If not set, running mage will list available targets
 // var Default = Build
 
+// Clean files and folders used for test data or binaries
+func Clean() error {
+	fmt.Println("Cleaning files and folders...")
+	clean := exec.Command("rm", "-rf", "dist")
+	err := clean.Run()
+	if err != nil {
+		return err
+	}
+
+	clean = exec.Command("rm", "-f", "bin/icon")
+	err = clean.Run()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // A build step that requires additional params, or platform specific steps for example
 func Build() error {
+	mg.Deps(Clean)
 	mg.Deps(InstallDeps)
 	fmt.Println("Building...")
-	cmd := exec.Command("go", "build", "-o", "MyApp", ".")
+
+	cmd := exec.Command("go", "build", "-o", "./bin/icon")
 	return cmd.Run()
 }
 
@@ -26,18 +46,12 @@ func Build() error {
 func Install() error {
 	mg.Deps(Build)
 	fmt.Println("Installing...")
-	return os.Rename("./MyApp", "/usr/bin/MyApp")
+	return os.Rename("./bin/icon", "$GOPATH/bin/identicon")
 }
 
 // Manage your deps, or running package managers.
 func InstallDeps() error {
 	fmt.Println("Installing Deps...")
-	cmd := exec.Command("go", "get", "github.com/stretchr/piglatin")
+	cmd := exec.Command("dep", "ensure")
 	return cmd.Run()
-}
-
-// Clean up after yourself
-func Clean() {
-	fmt.Println("Cleaning...")
-	os.RemoveAll("MyApp")
 }
