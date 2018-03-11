@@ -2,6 +2,15 @@
 
 
 [[projects]]
+  name = "github.com/magefile/mage"
+  packages = [
+    "mg",
+    "types"
+  ]
+  revision = "ab3ca2f6f85577d7ec82e0a6df721147a2e737f9"
+  version = "v2.0.1"
+
+[[projects]]
   name = "github.com/urfave/cli"
   packages = ["."]
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
@@ -10,6 +19,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "df4a79a3008603763e1d51475bb94e1290af5af71be4761ef9369093fcce7009"
+  inputs-digest = "d780178202f30072168cfe3d59c47ed90968de01be7318c5e17fc3b1334839b6"
   solver-name = "gps-cdcl"
   solver-version = 1
